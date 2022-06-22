@@ -1,0 +1,22 @@
+stages:
+  - npm-build
+  - docker-build
+  
+npm-build:
+  image: node
+  stage: npm-build
+  script: npm install
+ 
+
+docker-build:
+  stage: docker-build
+  image: docker:latest
+  services:
+    - docker:dind
+  script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_JOB_TOKEN $CI_REGISTRY
+    - docker build -t $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG .
+    - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+    - docker logout
+  dependencies:
+    - npm-build
