@@ -1,0 +1,36 @@
+pipeline {
+    
+      agent any
+  
+    stages {
+          
+            stage('clone repo') {
+            steps {
+                git 'git@github.com:dinayassine/nodeisika.git'
+            }
+        }
+        
+        stage('Build') {
+           
+     steps {
+             nodejs('NodeJS') {
+                   sh 'npm install'
+}
+}
+        }
+        
+        
+        
+                stage('test') {
+           
+     steps {
+             nodejs('NodeJS') {
+                   sh 'npm test'
+}
+}
+        }
+        
+        }
+       
+    
+}
