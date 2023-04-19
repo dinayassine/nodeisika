@@ -4,7 +4,7 @@ let express = require('express');
 // serveur html
 let server= express();
 let bodyParser = require("body-parser");
-
+//serveurphp
 server.use(bodyParser.urlencoded({ extended: true }));
 server.listen(80);
 
