@@ -1,5 +1,4 @@
 FROM node
-
 WORKDIR /srv
 COPY . .
 RUN npm install
